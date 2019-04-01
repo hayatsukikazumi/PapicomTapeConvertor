@@ -24,5 +24,8 @@ hs_err_pid*
 /target/
 /bin/
 .DS_Store
+
+# project setting
 /src/test/
+!/published/*.jar
 
