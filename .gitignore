@@ -24,6 +24,7 @@ hs_err_pid*
 /target/
 /bin/
 .DS_Store
+/.sts4-cache/
 
 # project setting
 /src/test/
