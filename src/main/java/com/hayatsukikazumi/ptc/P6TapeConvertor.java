@@ -1,6 +1,6 @@
 /**
  * @(#)P6TapeConvertor.java  2005/08/04
- * 
+ *
  * Copyright(c) HayatsukiKazumi 2005 - All Rights Reserved.
  */
 package com.hayatsukikazumi.ptc;
@@ -24,20 +24,20 @@ import java.awt.event.WindowEvent;
 
 /**
  * PAPICOM TAPE CONVERTOR（WAVファイル→P6ファイルに変換するソフトウェア）のメインクラス
- * 
+ *
  * @author HayatsukiKazumi
  * @version 1.1.0
  */
 public class P6TapeConvertor extends Frame {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
 
     private static final String APP_NAME = "PAPICOM TAPE CONVERTOR";
 
-    private static final String APP_VERSION = "1.0.0";
+    private static final String APP_VERSION = "1.1.1";
 
     private static final String APP_COPYRIGHT = "Copyright(c) はやつきかづみ 2005-2019";
 
@@ -73,7 +73,7 @@ public class P6TapeConvertor extends Frame {
 
     /**
      * コンストラクタ。
-     * 
+     *
      */
     public P6TapeConvertor() {
         super(APP_NAME);
@@ -173,7 +173,7 @@ public class P6TapeConvertor extends Frame {
      * -n : 極性反転モードにする。<br>
      * その他 ファイル名を指定する。<br>
      * ※ファイル名の指定がない場合は、GUI画面が開く。
-     * 
+     *
      * @param args パラメータ
      */
     public static void main(String[] args) {
@@ -247,10 +247,10 @@ public class P6TapeConvertor extends Frame {
         System.out.println(" (" + result + ")");
         System.exit(result);
     }
-    
+
     /**
      * このウインドウを閉じる。
-     * 
+     *
      */
     private void quit() {
         setVisible(false);
@@ -261,7 +261,7 @@ public class P6TapeConvertor extends Frame {
 
     /**
      * 開くメニューのアクション
-     * 
+     *
      * @param e イベント
      */
     private void actionPerformed_open(ActionEvent e) {
@@ -317,7 +317,7 @@ public class P6TapeConvertor extends Frame {
 
     /**
      * 終了メニューのアクション
-     * 
+     *
      * @param e イベント
      */
     private void actionPerformed_quit(ActionEvent e) {
@@ -326,7 +326,7 @@ public class P6TapeConvertor extends Frame {
 
     /**
      * バージョン情報メニューのアクション
-     * 
+     *
      * @param e イベント
      */
     private void actionPerformed_version(ActionEvent e) {

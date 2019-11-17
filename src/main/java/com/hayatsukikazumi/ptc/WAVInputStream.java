@@ -13,7 +13,7 @@ import java.io.InputStream;
  * WAVフォーマットを読み取るためのInputStream
  *
  * @author HayatsukiKazumi
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class WAVInputStream extends BufferedInputStream {
 	/** チャネル数 */
@@ -89,17 +89,20 @@ public class WAVInputStream extends BufferedInputStream {
 	}
 
 	/**
+	 * 音声データを読み取る。
+	 * channelに負の数を指定した場合、出力先配列にはステレオ音声ではL,R,L,R,…の順に出力される。
 	 *
 	 * @param channel どのチャネルを取得するか（負の数：全部のチャネル）
 	 * @param buf 出力先
 	 * @param off 書き込み位置
 	 * @param len 最大書き込み数
-	 * @return 書き込んだ配列の数
+	 * @return 書き込んだ配列の数。既にストリームの終端に達している場合は-1
 	 * @throws IOException
+	 * @throws IllegalArgumentException channel &gt;= チャネル数の場合
 	 */
 	public int readSound(int channel, float[] buf, int off, int len) throws IOException {
 
-		if (_channels < 0 || channel >= _channels) {
+		if (channel >= _channels) {
 			throw new IllegalArgumentException("Illegal channel.");
 		}
 
@@ -129,6 +132,13 @@ public class WAVInputStream extends BufferedInputStream {
 		return retlen;
 	}
 
+	/**
+	 * リトルエンディアン形式のバイト配列を-1〜1の浮動小数点に変換する。
+	 * @param buf
+	 * @param off
+	 * @param len
+	 * @return
+	 */
 	private static float bytesToFloat(byte[] buf, int off, int len) {
 
 		switch (len) {

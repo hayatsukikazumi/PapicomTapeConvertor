@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hayatsukikazumi.ptc</groupId>
   <artifactId>PapicomTapeConvertor</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <name>PapicomTapeConvertor</name>
   <url>https://maven.apache.org</url>
 
@@ -34,7 +34,8 @@
               <mainClass>com.hayatsukikazumi.ptc.P6TapeConvertor</mainClass>
             </manifest>
           </archive>
-          <finalName>PTC</finalName>
+          <finalName>PTC-${project.version}</finalName>
+          <appendAssemblyId>false</appendAssemblyId>
         </configuration>
       </plugin>
       <plugin>
