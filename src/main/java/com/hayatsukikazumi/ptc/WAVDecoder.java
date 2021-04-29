@@ -39,46 +39,46 @@ public abstract class WAVDecoder {
         case FORMAT_ID_LINEAR_PCM:
             switch (bytes) {
             case 1:
-                return new LINEAR8Dercoder();
+                return new LINEAR8Decoder();
             case 2:
-                return new LINEAR16Dercoder();
+                return new LINEAR16Decoder();
             case 3:
-                return new LINEAR24Dercoder();
+                return new LINEAR24Decoder();
             default:
                 throw new UnsupportedAudioFileException("Format not supported. bytes = " + bytes);
             }
         case FORMAT_ID_ALAW:
-            return new ALAWDercoder();
+            return new ALAWDecoder();
         case FORMAT_ID_MLAW:
-            return new MLAWDercoder();
+            return new MLAWDecoder();
         default:
             throw new UnsupportedAudioFileException("Format not supported. formatId = " + formatId);
         }
 
     }
 
-    static class LINEAR8Dercoder extends WAVDecoder {
+    static class LINEAR8Decoder extends WAVDecoder {
         @Override
         public float decode(byte[] buf, int off) {
             return ((buf[off] & 0xff) - 128) / (float) 128;
         }
     }
 
-    static class LINEAR16Dercoder extends WAVDecoder {
+    static class LINEAR16Decoder extends WAVDecoder {
         @Override
         public float decode(byte[] buf, int off) {
             return ((buf[off + 1] << 8) | (buf[off] & 0xff)) / (float) 0x8000;
         }
     }
 
-    static class LINEAR24Dercoder extends WAVDecoder {
+    static class LINEAR24Decoder extends WAVDecoder {
         @Override
         public float decode(byte[] buf, int off) {
             return ((buf[off + 2] << 16) | ((buf[off + 1] << 8) & 0xff00) | (buf[off] & 0xff)) / (float) 0x800000;
         }
     }
 
-    static class ALAWDercoder extends WAVDecoder {
+    static class ALAWDecoder extends WAVDecoder {
         @Override
         public float decode(byte[] buf, int off) {
             int src = buf[off] ^ 0x55;
@@ -99,7 +99,7 @@ public abstract class WAVDecoder {
         }
     }
 
-    static class MLAWDercoder extends WAVDecoder {
+    static class MLAWDecoder extends WAVDecoder {
         @Override
         public float decode(byte[] buf, int off) {
             int src = buf[off] ^ 0xff;
