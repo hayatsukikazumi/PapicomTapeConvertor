@@ -1,6 +1,6 @@
 /**
  * @(#)P6TapeConvertorMain.java 2005/08/04
- * 
+ *
  * Copyright(c) HayatsukiKazumi 2005 - All Rights Reserved.
  */
 package com.hayatsukikazumi.ptc;
@@ -13,11 +13,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /**
  * WAV→P6の変換機能ロジッククラスを呼び出すクラス
- * 
+ *
  * @author HayatsukiKazumi
- * @version 1.1.0
+ * @version 1.2.0
  */
 public class P6TapeConvertorMain {
 
@@ -53,7 +55,7 @@ public class P6TapeConvertorMain {
 
     /**
      * 変換処理を実行する。
-     * 
+     *
      * @param dirName ディレクトリ名
      * @param fileName ファイル名（必須）
      * @param skip スキップ時間（秒）（必須）
@@ -108,12 +110,6 @@ public class P6TapeConvertorMain {
         try {
             in = new WAVInputStream(new FileInputStream(wavFile));
 
-            // WAVファイルが処理可能かチェック
-            if (in.getChannels() != 1 || in.getFormatId() != 1
-                    || in.getBits() != 8) {
-                return RESULT_NOT_SUPPORTED_WAV;
-            }
-
             out = new BufferedOutputStream(new FileOutputStream(p6File));
             report = new PrintStream(new FileOutputStream(repFile));
             report.print("Output File = ");
@@ -130,7 +126,7 @@ public class P6TapeConvertorMain {
             return RESULT_IO_ERROR;
         } catch (IllegalEndDetectedException e) {
             return RESULT_ILLEGAL_END;
-        } catch (WrongFormatException e) {
+        } catch (UnsupportedAudioFileException e) {
             return RESULT_WRONG_FORMAT;
         } finally {
             if (in != null) {
